@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import pool from "./config/database";
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
 
@@ -12,6 +13,9 @@ app.use(cors()); // enable cross origin resource sharing
 
 app.use(express.json()); // allowa express to understand JSON data sent in HTTP requests
 // without express.json() , req.body maybe undefined for JSON requests
+
+//routes
+app.use("/api/auth", authRoutes);
 
 //health check
 app.get("/api/health", (req, res) => {
